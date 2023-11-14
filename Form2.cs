@@ -20,21 +20,26 @@ namespace WindowsFormsApp1
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            textBox2.Text =
-                $"totalTrucks: Total trucks\n {Driver.totalCrates} crates.\n{Driver.totalValue}: Total value earned from crates, \n{Driver.totalCost}: totalCost in operating costs \n{Driver.totalRevenue} overall revenue.";
-
-
 
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-
+            //.Text = $"{Driver.totalTrucks}: Total trucks\r\n{Driver.totalCrates}: Total crates\r\n{Driver.totalValue}: Total value earned from crates \r\n{Driver.totalCost}: totalCost in operating costs \r\n{Driver.totalRevenue}: Total overall revenue of sim.";
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
