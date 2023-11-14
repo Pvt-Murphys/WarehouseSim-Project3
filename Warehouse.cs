@@ -37,6 +37,7 @@ namespace Project3
         public static double averageTruckVal = 0;
         public static double totalCost = 0;
         public static double totalRevenue = 0;
+        Random rand = new Random();
 
         public Warehouse(int docknum)
         {
@@ -69,9 +70,55 @@ namespace Project3
             for (int i = 0; i < 48; i++)
             {
                 //trucks bound for that interval arrive at gate
-                while (schedule.Peek().GetArrivalInterval() == i)
+                //while (schedule.Peek().GetArrivalInterval() == i)
+                //{
+                //    entrance.Enqueue(schedule.Dequeue().GetTruck());
+                //}
+                if (i < 12)
                 {
-                    entrance.Enqueue(schedule.Dequeue().GetTruck());
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (rand.Next(1, 2) == 1)
+                        {
+                            entrance.Enqueue(new Truck());
+                        }
+                    }
+                } else if (i >= 12 && i < 18)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (rand.Next(1, 2) == 1)
+                        {
+                            entrance.Enqueue(new Truck());
+                        }
+                    }
+                } else if (i >= 18 && i < 30)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (rand.Next(1, 2) == 1)
+                        {
+                            entrance.Enqueue(new Truck());
+                        }
+                    }
+                } else if (i >= 30 && i < 36)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (rand.Next(1, 2) == 1)
+                        {
+                            entrance.Enqueue(new Truck());
+                        }
+                    }
+                } else if (i >= 36)
+                {
+                    for (int j = 0; j < 2; j++)
+                    {
+                        if (rand.Next(1, 2) == 1)
+                        {
+                            entrance.Enqueue(new Truck());
+                        }
+                    }
                 }
 
                 //trucks at gate are sent to docks, in order of dock that has gone longest without receiving a truck
@@ -128,7 +175,7 @@ namespace Project3
         /// Creates a list of random intervals within the simulation parameters that correspond to a Truck object.
         /// </summary>
         /// <returns>List of Schedule objects containing a truck object and the interval it will arrive at.</returns>
-        public static List<Schedule> incomingTruckArrivals()
+        /*public static List<Schedule> incomingTruckArrivals()
         {
             List<Schedule> arrivalIntervals = new List<Schedule>();
             Random rand = new Random();
@@ -142,6 +189,6 @@ namespace Project3
                 arrivalIntervals.Add(entry);
             }
             return arrivalIntervals;
-        }
+        }*/
     }
 }
