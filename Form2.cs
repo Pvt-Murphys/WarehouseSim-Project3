@@ -20,7 +20,11 @@ namespace WindowsFormsApp1
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            textBox2.Text = Driver.simulation();
+            textBox2.Text =
+                $"totalTrucks: Total trucks\n {Driver.totalCrates} crates.\n{Driver.totalValue}: Total value earned from crates, \n{Driver.totalCost}: totalCost in operating costs \n{Driver.totalRevenue} overall revenue.";
+
+
+
         }
 
         private void Form2_Load(object sender, EventArgs e)

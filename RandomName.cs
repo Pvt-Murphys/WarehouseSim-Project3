@@ -43,7 +43,7 @@ namespace Project3
             NameList l = new NameList();
 
             JsonSerializer serializer = new JsonSerializer();
-            using (StreamReader reader = new StreamReader(path: "C:\\Users\\rmowe\\OneDrive\\Desktop\\School 2023\\Data Structures\\Project3_FINAL\\WindowsFormsApp1\\json1.json"))
+            using (StreamReader reader = new StreamReader("names.json"))
             using (JsonReader jreader = new JsonTextReader(reader))
             {
                 l = serializer.Deserialize<NameList>(jreader);
