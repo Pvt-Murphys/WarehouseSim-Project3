@@ -37,7 +37,7 @@ namespace Project3
         public static double averageTruckVal = 0;
         public static double totalCost = 0;
         public static double totalRevenue = 0;
-        Random rand = new Random();
+        static Random rand = new Random();
 
         public Warehouse(int docknum)
         {
@@ -57,7 +57,7 @@ namespace Project3
         {
 
             //Incoming truck list and arrival intervals
-            Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
+            //Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
             entrance = new Queue<Truck>();
 
             //test code to ensure that schedule's arrival intervals are in order
