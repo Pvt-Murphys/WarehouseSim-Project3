@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Crate.cs" />
     <Compile Include="Dock.cs" />
-    <Compile Include="Driver.cs" />
+    <Compile Include="Warehouse.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,7 +69,6 @@
     <Compile Include="RandomName.cs" />
     <Compile Include="Schedule.cs" />
     <Compile Include="Truck.cs" />
-    <Compile Include="Warehouse.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

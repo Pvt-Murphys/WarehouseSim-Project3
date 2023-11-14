@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project3
 {
-    internal class Schedule
+    public class Schedule
     {
         public Truck truck { get; set; }
         public int interval { get; set; }
