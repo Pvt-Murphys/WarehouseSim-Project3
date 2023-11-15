@@ -74,6 +74,7 @@ namespace Project3
                 //{
                 //    entrance.Enqueue(schedule.Dequeue().GetTruck());
                 //}
+                Random rand = new Random();
                 if (i < 12)
                 {
                     for (int j = 0; j < 2; j++)
@@ -175,7 +176,7 @@ namespace Project3
         /// Creates a list of random intervals within the simulation parameters that correspond to a Truck object.
         /// </summary>
         /// <returns>List of Schedule objects containing a truck object and the interval it will arrive at.</returns>
-        /*public static List<Schedule> incomingTruckArrivals()
+        public static List<Schedule> incomingTruckArrivals()
         {
             List<Schedule> arrivalIntervals = new List<Schedule>();
             Random rand = new Random();
@@ -189,6 +190,6 @@ namespace Project3
                 arrivalIntervals.Add(entry);
             }
             return arrivalIntervals;
-        }*/
+        }
     }
 }

@@ -44,18 +44,20 @@
             this.loadinganimationgif.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.loadinganimationgif.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.loadinganimationgif.Image = ((System.Drawing.Image)(resources.GetObject("loadinganimationgif.Image")));
-            this.loadinganimationgif.Location = new System.Drawing.Point(290, 71);
+            this.loadinganimationgif.Location = new System.Drawing.Point(218, 58);
+            this.loadinganimationgif.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.loadinganimationgif.Name = "loadinganimationgif";
-            this.loadinganimationgif.Size = new System.Drawing.Size(208, 208);
+            this.loadinganimationgif.Size = new System.Drawing.Size(157, 170);
             this.loadinganimationgif.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.loadinganimationgif.TabIndex = 0;
             this.loadinganimationgif.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(323, 247);
+            this.button1.Location = new System.Drawing.Point(242, 201);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(144, 23);
+            this.button1.Size = new System.Drawing.Size(108, 19);
             this.button1.TabIndex = 1;
             this.button1.Text = "Run Simulation";
             this.button1.UseVisualStyleBackColor = true;
@@ -64,24 +66,27 @@
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Stencil", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(59, 303);
+            this.textBox1.Location = new System.Drawing.Point(44, 246);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(679, 39);
+            this.textBox1.Size = new System.Drawing.Size(510, 33);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = "THE ULTIMATE TRUCK UNLOADING SIMULATION";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.loadinganimationgif);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Form1";
             this.Text = "Shipping Sim.";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.loadinganimationgif)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
