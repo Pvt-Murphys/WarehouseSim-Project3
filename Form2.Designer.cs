@@ -31,12 +31,10 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.MenuPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.EnterNumber = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.MenuPanel.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -53,7 +51,8 @@
             // 
             this.MenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.MenuPanel.Controls.Add(this.panel1);
-            this.MenuPanel.Controls.Add(this.button1);
+            this.MenuPanel.Controls.Add(this.EnterNumber);
+            this.MenuPanel.Controls.Add(this.textBox1);
             this.MenuPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.MenuPanel.Location = new System.Drawing.Point(0, 0);
             this.MenuPanel.Name = "MenuPanel";
@@ -63,9 +62,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
-            this.panel1.BackgroundImage = global::WindowsFormsApp1.Properties.Resources.Untitled__1_;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
@@ -74,28 +71,29 @@
             this.panel1.TabIndex = 0;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // button1
+            // textBox1
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.Gainsboro;
-            this.button1.Location = new System.Drawing.Point(0, 67);
-            this.button1.Margin = new System.Windows.Forms.Padding(0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 40);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.textBox1.BackColor = System.Drawing.Color.LightGray;
+            this.textBox1.Location = new System.Drawing.Point(0, 107);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(143, 20);
+            this.textBox1.TabIndex = 3;
             // 
-            // pictureBox1
+            // EnterNumber
             // 
-            this.pictureBox1.Image = global::WindowsFormsApp1.Properties.Resources.Untitled__1_;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(143, 64);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.EnterNumber.Dock = System.Windows.Forms.DockStyle.Top;
+            this.EnterNumber.FlatAppearance.BorderSize = 0;
+            this.EnterNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EnterNumber.ForeColor = System.Drawing.Color.Gainsboro;
+            this.EnterNumber.Location = new System.Drawing.Point(0, 67);
+            this.EnterNumber.Margin = new System.Windows.Forms.Padding(0);
+            this.EnterNumber.Name = "EnterNumber";
+            this.EnterNumber.Size = new System.Drawing.Size(143, 40);
+            this.EnterNumber.TabIndex = 2;
+            this.EnterNumber.Text = "Run Simulation";
+            this.EnterNumber.UseVisualStyleBackColor = true;
+            this.EnterNumber.Click += new System.EventHandler(this.EnterNumber_Click);
             // 
             // Form2
             // 
@@ -110,8 +108,7 @@
             this.Load += new System.EventHandler(this.Form2_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.MenuPanel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.MenuPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -120,7 +117,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.FlowLayoutPanel MenuPanel;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button EnterNumber;
     }
 }

@@ -55,7 +55,7 @@ namespace Project3
         /// <param name="args"></param>
         public static string Run()
         {
-
+            
             //Incoming truck list and arrival intervals
             Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
             entrance = new Queue<Truck>();

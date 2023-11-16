@@ -65,24 +65,47 @@ namespace WindowsFormsApp1
             Warehouse.Run();
             dataGridView1.Refresh();
         }
+        private bool IsAnInteger(string value)
+        {
+            int number;
+            return int.TryParse(value, out number);
+        }
+        private void EnterNumber_Click(object sender, EventArgs e)
+        {
+            string userInput = textBox1.Text;
+
+            if (IsAnInteger(userInput))
+            {
+                int number = int.Parse(userInput);
+                if (number > 0)
+                {
+                    Warehouse warehouse = new Warehouse(number);
+                    warehouse.Run();
+                    dataGridView1.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter a number greater than 0");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter a number");
+            }
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
-         
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            
-        }
 
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-            
         }
-
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
     }
 }
+
