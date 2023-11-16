@@ -45,7 +45,7 @@ namespace WindowsFormsApp1
             // bind data table to grid view
             dataGridView1.DataSource = dataTable;
         }
-        private void AddDataRow(string totalCrates, string totalValue, string totalCost, string totalRevenue, string averageCrateValue, string averageTruckValue, string longestLine)
+        public void AddDataRow(string totalCrates, string totalValue, string totalCost, string totalRevenue, string averageCrateValue, string averageTruckValue, string longestLine)
         {
             // Add a new row to the DataTable
             DataRow row = dataTable.NewRow();
@@ -59,6 +59,7 @@ namespace WindowsFormsApp1
 
             // Add the row to the DataTable
             dataTable.Rows.Add(row);
+            dataGridView1.Refresh();
         }
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
@@ -80,7 +81,7 @@ namespace WindowsFormsApp1
                 if (number > 0)
                 {
                     Warehouse warehouse = new Warehouse(number);
-                    warehouse.Run();
+                    warehouse.Run(this);
                     dataGridView1.Refresh();
                 }
                 else
@@ -92,6 +93,7 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Please enter a number");
             }
+            System.GC.Collect();
         }
         private void ExportFile_Click(object sender, EventArgs e)
         {

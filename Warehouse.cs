@@ -12,6 +12,7 @@ using System.Linq;
 using System;
 using Microsoft.SqlServer.Server;
 using System.Security.Cryptography.X509Certificates;
+using WindowsFormsApp1;
 
 namespace Project3
 {
@@ -57,7 +58,7 @@ namespace Project3
         ///  Output a report to the user with the results of the simulation in a text file.
         /// </summary>
         /// <param name="args"></param>
-        public string Run()
+        public string Run(Form2 form)
         {
             
             //Incoming truck list and arrival intervals
@@ -159,6 +160,9 @@ namespace Project3
                     d.UnloadCrate();
                 }
                 totalCost = totalCost + docksOpen * 100;
+
+                form.AddDataRow(totalCrates.ToString(), totalValue.ToString(), totalCost.ToString(), totalRevenue.ToString(), averageCrateVal.ToString(), averageTruckVal.ToString(), longestLine.ToString());
+
             }
 
             //at the end of the sim, adds up each dock object's recorded statistics into the final numbers
@@ -173,6 +177,8 @@ namespace Project3
             averageCrateVal = totalValue / totalCrates;
             averageTruckVal = totalValue / totalTrucks;
             totalRevenue = totalValue - totalCost;
+            // adds a new data row to the data table
+            form.AddDataRow(totalCrates.ToString(), totalValue.ToString(), totalCost.ToString(), totalRevenue.ToString(), averageCrateVal.ToString(), averageTruckVal.ToString(), longestLine.ToString());
             return finalData = ($"{totalTrucks} trucks, {totalCrates} crates. {totalValue} earned from crates, {totalCost} in operating costs, {totalRevenue} overall revenue. {averageCrateVal} is average value per crate.");
         }
 
