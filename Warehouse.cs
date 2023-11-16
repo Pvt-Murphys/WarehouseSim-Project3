@@ -28,8 +28,10 @@ namespace Project3
         public int nextDock = 0;
         public int nextDockID = 1;
 
-        static Queue<Truck> entrance;
-        static Dock[] docks;
+
+        Queue<Truck> entrance;
+        Dock[] docks;
+
 
         //Value related variables for use in report
         public double totalValue = 0;
@@ -37,7 +39,9 @@ namespace Project3
         public double averageTruckVal = 0;
         public double totalCost = 0;
         public double totalRevenue = 0;
-        static Random rand = new Random();
+
+        Random rand = new Random();
+
 
         public Warehouse(int docknum)
         {
@@ -53,9 +57,9 @@ namespace Project3
         ///  Output a report to the user with the results of the simulation in a text file.
         /// </summary>
         /// <param name="args"></param>
-        public static string Run()
+        public string Run()
         {
-
+            
             //Incoming truck list and arrival intervals
             //Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
             entrance = new Queue<Truck>();
@@ -74,6 +78,7 @@ namespace Project3
                 //{
                 //    entrance.Enqueue(schedule.Dequeue().GetTruck());
                 //}
+                Random rand = new Random();
                 if (i < 12)
                 {
                     for (int j = 0; j < 2; j++)
@@ -175,7 +180,7 @@ namespace Project3
         /// Creates a list of random intervals within the simulation parameters that correspond to a Truck object.
         /// </summary>
         /// <returns>List of Schedule objects containing a truck object and the interval it will arrive at.</returns>
-        /*public static List<Schedule> incomingTruckArrivals()
+        public List<Schedule> incomingTruckArrivals()
         {
             List<Schedule> arrivalIntervals = new List<Schedule>();
             Random rand = new Random();
@@ -189,6 +194,6 @@ namespace Project3
                 arrivalIntervals.Add(entry);
             }
             return arrivalIntervals;
-        }*/
+        }
     }
 }
