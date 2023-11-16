@@ -18,25 +18,25 @@ namespace Project3
     public class Warehouse
     {
         //basic statistics for use in report
-        public static string finalData = string.Empty;
-        public static int docksOpen = 20;
-        public static int longestLine = 0;
+        public string finalData = string.Empty;
+        public int docksOpen = 20;
+        public int longestLine = 0;
 
         //totalTrucks increases once a truck has been processed.
-        public static int totalTrucks = 0;
-        public static int totalCrates = 0;
-        public static int nextDock = 0;
-        public static int nextDockID = 1;
+        public int totalTrucks = 0;
+        public int totalCrates = 0;
+        public int nextDock = 0;
+        public int nextDockID = 1;
 
         static Queue<Truck> entrance;
-        static Dock[] docks = new Dock[docksOpen];
+        static Dock[] docks;
 
         //Value related variables for use in report
-        public static double totalValue = 0;
-        public static double averageCrateVal = 0;
-        public static double averageTruckVal = 0;
-        public static double totalCost = 0;
-        public static double totalRevenue = 0;
+        public double totalValue = 0;
+        public double averageCrateVal = 0;
+        public double averageTruckVal = 0;
+        public double totalCost = 0;
+        public double totalRevenue = 0;
         static Random rand = new Random();
 
         public Warehouse(int docknum)
