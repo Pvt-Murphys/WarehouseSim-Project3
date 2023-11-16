@@ -33,14 +33,14 @@ namespace WindowsFormsApp1
             dataTable.Columns.Add("Average truck Value", typeof(string));
             dataTable.Columns.Add("Longest Line", typeof(string));
 
-            AddDataRow(
-                Warehouse.totalCrates.ToString(),
-                Warehouse.totalValue.ToString(),
-                Warehouse.totalCost.ToString(),
-                Warehouse.totalRevenue.ToString(),
-                Warehouse.averageCrateVal.ToString(),
-                Warehouse.averageTruckVal.ToString(),
-                Warehouse.longestLine.ToString());
+            //AddDataRow(
+            //    warehouse.totalCrates.ToString(),
+            //    warehouse.totalValue.ToString(),
+            //    warehouse.totalCost.ToString(),
+            //    warehouse.totalRevenue.ToString(),
+            //    warehouse.averageCrateVal.ToString(),
+            //    warehouse.averageTruckVal.ToString(),
+            //    warehouse.longestLine.ToString());
 
             // bind data table to grid view
             dataGridView1.DataSource = dataTable;
@@ -62,7 +62,7 @@ namespace WindowsFormsApp1
         }
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            Warehouse.Run();
+            
             dataGridView1.Refresh();
         }
         private bool IsAnInteger(string value)
@@ -92,6 +92,10 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Please enter a number");
             }
+        }
+        private void ExportFile_Click(object sender, EventArgs e)
+        {
+
         }
         private void Form2_Load(object sender, EventArgs e)
         {
