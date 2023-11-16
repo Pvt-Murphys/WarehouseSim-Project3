@@ -12,32 +12,36 @@ using System.Linq;
 using System;
 using Microsoft.SqlServer.Server;
 using System.Security.Cryptography.X509Certificates;
+using WindowsFormsApp1;
 
 namespace Project3
 {
     public class Warehouse
     {
         //basic statistics for use in report
-        public static string finalData = string.Empty;
-        public static int docksOpen = 20;
-        public static int longestLine = 0;
+        public string finalData = string.Empty;
+        public int docksOpen = 20;
+        public int longestLine = 0;
 
         //totalTrucks increases once a truck has been processed.
-        public static int totalTrucks = 0;
-        public static int totalCrates = 0;
-        public static int nextDock = 0;
-        public static int nextDockID = 1;
+        public int totalTrucks = 0;
+        public int totalCrates = 0;
+        public int nextDock = 0;
+        public int nextDockID = 1;
 
-        static Queue<Truck> entrance;
-        static Dock[] docks = new Dock[docksOpen];
+        Queue<Truck> entrance;
+        Dock[] docks;
+        public string crateStatus;
 
         //Value related variables for use in report
-        public static double totalValue = 0;
-        public static double averageCrateVal = 0;
-        public static double averageTruckVal = 0;
-        public static double totalCost = 0;
-        public static double totalRevenue = 0;
+        public double totalValue = 0;
+        public double averageCrateVal = 0;
+        public double averageTruckVal = 0;
+        public double totalCost = 0;
+        public double totalRevenue = 0;
+
         Random rand = new Random();
+
 
         public Warehouse(int docknum)
         {
@@ -53,11 +57,11 @@ namespace Project3
         ///  Output a report to the user with the results of the simulation in a text file.
         /// </summary>
         /// <param name="args"></param>
-        public static string Run()
+        public string Run()
         {
-
+            
             //Incoming truck list and arrival intervals
-            Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
+            //Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
             entrance = new Queue<Truck>();
 
             //test code to ensure that schedule's arrival intervals are in order
@@ -74,9 +78,10 @@ namespace Project3
                 //{
                 //    entrance.Enqueue(schedule.Dequeue().GetTruck());
                 //}
+                Random rand = new Random();
                 if (i < 12)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < 1; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -94,25 +99,25 @@ namespace Project3
                     }
                 } else if (i >= 18 && i < 30)
                 {
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 0; j < 3; j++)
                     {
-                        if (rand.Next(1, 2) == 1)
+                        if (rand.Next(1, 3) == 1)
                         {
                             entrance.Enqueue(new Truck());
                         }
                     }
                 } else if (i >= 30 && i < 36)
                 {
-                    for (int j = 0; j < 3; j++)
+                    for (int j = 0; j < 2; j++)
                     {
-                        if (rand.Next(1, 2) == 1)
+                        if (rand.Next(1, 3) == 1)
                         {
                             entrance.Enqueue(new Truck());
                         }
                     }
                 } else if (i >= 36)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < 1; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -151,7 +156,38 @@ namespace Project3
                 //each dock unloads 1 crate, swapping out trucks if truck is empty
                 foreach (Dock d in docks)
                 {
-                    d.UnloadCrate();
+                    //prepares to write an entry into the report CSV file containing information about the crate, truck, and circumstances.
+                    crateStatus = string.Empty;
+                    if (d.Line.Count() > 0 && d.Line.Peek().Trailer.Count() > 0)
+                    {
+                        if (d.Line.Peek().Trailer.Count() > 1)
+                        {
+                            crateStatus = "The truck still has more crates to unload.";
+                            //Unloads the crate at the same time as it writes to the report.
+                            Form2.RecordCrate(d.UnloadCrate(i), d.Line.Peek(), crateStatus);
+                        }
+
+                        if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() > 1)
+                        {
+                            crateStatus = "The truck has no more crates to unload, and another truck is waiting to take its place.";
+                            //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
+                            Form2.RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                        }
+
+                        if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() == 1)
+                        {
+                            crateStatus = "The truck has no more crates to unload, and no other trucks are in the line.";
+                            //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
+                            Form2.RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                        }
+                        //This is an example code of the method to write the crate to the csv file, note that the two method calls MUST occur, as otherwise the crate will not be unloaded nor the truck sent off it is empty.
+                        //RecordCrate(d.UnloadCrate(i), d.Sendoff/d.Line().Peek(), crateStatus);
+                        if (d.Line.Count() == 0)
+                        {
+                            d.TimeNotInUse++;
+                            
+                        }
+                    }
                 }
                 totalCost = totalCost + docksOpen * 100;
             }
@@ -175,7 +211,7 @@ namespace Project3
         /// Creates a list of random intervals within the simulation parameters that correspond to a Truck object.
         /// </summary>
         /// <returns>List of Schedule objects containing a truck object and the interval it will arrive at.</returns>
-        /*public static List<Schedule> incomingTruckArrivals()
+        public List<Schedule> incomingTruckArrivals()
         {
             List<Schedule> arrivalIntervals = new List<Schedule>();
             Random rand = new Random();
@@ -189,6 +225,6 @@ namespace Project3
                 arrivalIntervals.Add(entry);
             }
             return arrivalIntervals;
-        }*/
+        }
     }
 }

@@ -22,6 +22,7 @@ namespace Project3
     {
         string Id; //The crates unique identification number
         double Price; //The cost of the crates contents
+        private int timeInterval { get; set; }
 
         public Crate()
         {
@@ -30,6 +31,7 @@ namespace Project3
 
             Price = randy.Next(50, 501);
             Id = Guid.NewGuid().ToString(); // Generate a unique ID
+            timeInterval = 0;
         }
 
         /// <summary>
@@ -39,6 +41,15 @@ namespace Project3
         public double GetPrice()
         {
             return Price;
+        }
+
+        /// <summary>
+        /// Sets the interval during which this crate is unloaded.
+        /// </summary>
+        /// <param name="timeInt">interval during which this crate was unloaded.</param>
+        public void SetUnloadTime(int timeInt)
+        {
+            this.timeInterval = timeInt;
         }
     }
 }
