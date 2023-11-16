@@ -73,7 +73,6 @@ namespace WindowsFormsApp1
         }
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            
             dataGridView1.Refresh();
         }
         private bool IsAnInteger(string value)
@@ -115,12 +114,23 @@ namespace WindowsFormsApp1
             //The crates value
             //A string indicated the one of three scenarios.
 
-            FileStream fs = new FileStream("simulationresults.csv", FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);
+
+
+/*            FileStream fs = new FileStream("simulationresults.csv", FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);*/
         }
 
+        /// <summary>
+        /// Crate info for csv.
+        /// </summary>
+        /// <param name="crate"></param>
+        /// <param name="truck"></param>
+        /// <param name="crateStatus"></param>
         public static void RecordCrate(Crate crate, Truck truck, String crateStatus)
         {
+/*
+            FileStream fs = new FileStream("simulationresults.csv", FileMode.Create);
+            StreamWriter sw = new StreamWriter(fs);*/
 
         }
         private void Form2_Load(object sender, EventArgs e)
