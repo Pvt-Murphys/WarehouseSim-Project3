@@ -47,13 +47,15 @@ namespace Project3
         /// <summary>
         /// Attempts to unload one crate from the first truck in the queue, adding to relevant statistics depending on outcome.
         /// </summary>
-        public void UnloadCrate()
+        /// <param name="i">interval the crate was unloaded in</param>
+        /// <returns></returns>
+        public Crate UnloadCrate(int i)
         {
             //Checks to see if the line contains any trucks to unload. If not, then marks the time as unused and returns.
             if (Line.Count() == 0)
             {
                 TimeNotInUse++;
-                return;
+                return null;
             }
 
             //Catches a potential error in which a truck does not have any crates in it.
@@ -62,15 +64,11 @@ namespace Project3
                 this.SendOff();
             }
             //unloads the crate, adding its value to the dock's recorded statistic and incrementing other statistics.
-            TotalSales += Line.Peek().Trailer.Pop().GetPrice();
+            Line.Peek().Trailer.Peek().SetUnloadTime(i);
+            TotalSales += Line.Peek().Trailer.Peek().GetPrice();
             TotalCrates++;
             TimeInUse++;
-
-            //dispatches empty trucks from the dock.
-            if (Line.Peek().Trailer.Count == 0)
-            {
-                this.SendOff();
-            }
+            return Line.Peek().Trailer.Pop();
         }
 
         /// <summary>
