@@ -28,8 +28,10 @@ namespace Project3
         public int nextDock = 0;
         public int nextDockID = 1;
 
+
         Queue<Truck> entrance;
         Dock[] docks;
+
 
         //Value related variables for use in report
         public double totalValue = 0;
@@ -37,7 +39,9 @@ namespace Project3
         public double averageTruckVal = 0;
         public double totalCost = 0;
         public double totalRevenue = 0;
+
         Random rand = new Random();
+
 
         public Warehouse(int docknum)
         {
@@ -57,7 +61,7 @@ namespace Project3
         {
             
             //Incoming truck list and arrival intervals
-            Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
+            //Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
             entrance = new Queue<Truck>();
 
             //test code to ensure that schedule's arrival intervals are in order
