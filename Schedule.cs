@@ -1,4 +1,14 @@
-﻿using System;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+// Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
+// Course: CSCI-2210-001 - Data Structures
+// Assignment: Project 3
+// Description: Creates a schedule for the trucks, in order for them to be able to arrive
+// more frequently in the middle of the day and less frequently later and earlier in the day.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +24,7 @@ namespace Project3
         /// <summary>
         /// Constructs a Schedule object containing a Truck object and an integer representing the simulation interval it will arrive in.
         /// </summary>
-        /// <param name="truck">Truck object</param>
+        /// <param name="truck">Truckobject</param>
         /// <param name="interval">Simulation interval the Truck object will arrive in.</param>
         public Schedule(Truck truck, int interval)
         {

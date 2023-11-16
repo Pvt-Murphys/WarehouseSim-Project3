@@ -1,4 +1,13 @@
-﻿using System;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+// Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
+// Course: CSCI-2210-001 - Data Structures
+// Assignment: Project 3
+// Description: Creates a random name value for the truck drivers.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
@@ -137,6 +146,3 @@ namespace Project3
         Female
     }
 }
-
-
-//C:\Users\rmowe\OneDrive\Desktop\School 2023\Data Structures\Project3_FINAL\WindowsFormsApp1\json1.json
