@@ -97,6 +97,11 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        public static void RecordCrate(Crate crate, Truck truck, String crateStatus)
+        {
+
+        }
         private void Form2_Load(object sender, EventArgs e)
         {
 

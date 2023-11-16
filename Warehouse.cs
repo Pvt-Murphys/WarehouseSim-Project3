@@ -12,6 +12,7 @@ using System.Linq;
 using System;
 using Microsoft.SqlServer.Server;
 using System.Security.Cryptography.X509Certificates;
+using WindowsFormsApp1;
 
 namespace Project3
 {
@@ -28,10 +29,9 @@ namespace Project3
         public int nextDock = 0;
         public int nextDockID = 1;
 
-
         Queue<Truck> entrance;
         Dock[] docks;
-
+        public string crateStatus;
 
         //Value related variables for use in report
         public double totalValue = 0;
@@ -81,7 +81,7 @@ namespace Project3
                 Random rand = new Random();
                 if (i < 12)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < 1; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -99,25 +99,25 @@ namespace Project3
                     }
                 } else if (i >= 18 && i < 30)
                 {
-                    for (int j = 0; j < 4; j++)
+                    for (int j = 0; j < 3; j++)
                     {
-                        if (rand.Next(1, 2) == 1)
+                        if (rand.Next(1, 3) == 1)
                         {
                             entrance.Enqueue(new Truck());
                         }
                     }
                 } else if (i >= 30 && i < 36)
                 {
-                    for (int j = 0; j < 3; j++)
+                    for (int j = 0; j < 2; j++)
                     {
-                        if (rand.Next(1, 2) == 1)
+                        if (rand.Next(1, 3) == 1)
                         {
                             entrance.Enqueue(new Truck());
                         }
                     }
                 } else if (i >= 36)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < 1; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -156,7 +156,38 @@ namespace Project3
                 //each dock unloads 1 crate, swapping out trucks if truck is empty
                 foreach (Dock d in docks)
                 {
-                    d.UnloadCrate();
+                    //prepares to write an entry into the report CSV file containing information about the crate, truck, and circumstances.
+                    crateStatus = string.Empty;
+                    if (d.Line.Count() > 0 && d.Line.Peek().Trailer.Count() > 0)
+                    {
+                        if (d.Line.Peek().Trailer.Count() > 1)
+                        {
+                            crateStatus = "The truck still has more crates to unload.";
+                            //Unloads the crate at the same time as it writes to the report.
+                            Form2.RecordCrate(d.UnloadCrate(i), d.Line.Peek(), crateStatus);
+                        }
+
+                        if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() > 1)
+                        {
+                            crateStatus = "The truck has no more crates to unload, and another truck is waiting to take its place.";
+                            //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
+                            Form2.RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                        }
+
+                        if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() == 1)
+                        {
+                            crateStatus = "The truck has no more crates to unload, and no other trucks are in the line.";
+                            //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
+                            Form2.RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                        }
+                        //This is an example code of the method to write the crate to the csv file, note that the two method calls MUST occur, as otherwise the crate will not be unloaded nor the truck sent off it is empty.
+                        //RecordCrate(d.UnloadCrate(i), d.Sendoff/d.Line().Peek(), crateStatus);
+                        if (d.Line.Count() == 0)
+                        {
+                            d.TimeNotInUse++;
+                            
+                        }
+                    }
                 }
                 totalCost = totalCost + docksOpen * 100;
             }
