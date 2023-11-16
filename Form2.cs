@@ -33,15 +33,6 @@ namespace WindowsFormsApp1
             dataTable.Columns.Add("Average truck Value", typeof(string));
             dataTable.Columns.Add("Longest Line", typeof(string));
 
-            //AddDataRow(
-            //    warehouse.totalCrates.ToString(),
-            //    warehouse.totalValue.ToString(),
-            //    warehouse.totalCost.ToString(),
-            //    warehouse.totalRevenue.ToString(),
-            //    warehouse.averageCrateVal.ToString(),
-            //    warehouse.averageTruckVal.ToString(),
-            //    warehouse.longestLine.ToString());
-
             // bind data table to grid view
             dataGridView1.DataSource = dataTable;
         }
@@ -99,17 +90,21 @@ namespace WindowsFormsApp1
         {
 
         }
-
+        /// <summary>
+        /// clears the data table and restores the headder 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearTable_Click(object sender, EventArgs e)
+        {
+            dataTable.Clear();
+            dataGridView1.Refresh();
+        }
         public static void RecordCrate(Crate crate, Truck truck, String crateStatus)
         {
 
         }
         private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
