@@ -197,13 +197,20 @@ namespace Project3
 
                     }
 
-                    //updates totals during loop
+                }
+
+                //updates totals each time interval
+                //resets totals stored in dock objects to prevent exponential growth
+                totalTrucks = 0;
+                totalCrates = 0;
+                totalValue = 0;
+                //loops through docks to add their totals to the relevant totals
+                foreach (Dock d in docks)
+                {
                     totalTrucks += d.TotalTrucks;
                     totalCrates += d.TotalCrates;
                     totalValue += d.TotalSales;
                 }
-
-                //updates totals during loop after crates unloaded
                 totalCost = totalCost + docksOpen * 100;
                 averageCrateVal = totalValue / totalCrates;
                 averageTruckVal = totalValue / totalTrucks;
