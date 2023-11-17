@@ -79,6 +79,7 @@
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.loadinganimationgif);
             this.Controls.Add(this.GoToSimulation);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Shipping Sim.";
