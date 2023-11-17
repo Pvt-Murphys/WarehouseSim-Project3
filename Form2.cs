@@ -4,11 +4,11 @@
 // Course: CSCI-2210-001 - Data Structures
 // Assignment: Project 3
 // Description: Displays simulation data to the user in a table, and allows the user to run the simulation again and also export 
-// To a csv file.
+// to a csv file.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-﻿using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Linq;
 using Project3;
 using System;
 using System.Collections.Generic;
@@ -26,12 +26,19 @@ namespace WindowsFormsApp1
     public partial class Form2 : Form
     {
         private DataTable dataTable;
+
+        /// <summary>
+        /// 
+        /// </summary>
         public Form2()
         {
             InitializeComponent();
             InitializeDataTable();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitializeDataTable()
         {
             // create data table columns
@@ -47,6 +54,17 @@ namespace WindowsFormsApp1
             // bind data table to grid view
             dataGridView1.DataSource = dataTable;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="totalCrates"></param>
+        /// <param name="totalValue"></param>
+        /// <param name="totalCost"></param>
+        /// <param name="totalRevenue"></param>
+        /// <param name="averageCrateValue"></param>
+        /// <param name="averageTruckValue"></param>
+        /// <param name="longestLine"></param>
         public void AddDataRow(string totalCrates, string totalValue, string totalCost, string totalRevenue, string averageCrateValue, string averageTruckValue, string longestLine)
         {
             // Add a new row to the DataTable
@@ -63,15 +81,33 @@ namespace WindowsFormsApp1
             dataTable.Rows.Add(row);
             dataGridView1.Refresh();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.Refresh();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private bool IsAnInteger(string value)
         {
             int number;
             return int.TryParse(value, out number);
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnterNumber_Click(object sender, EventArgs e)
         {
             string userInput = textBox1.Text;
@@ -96,25 +132,22 @@ namespace WindowsFormsApp1
             }
             System.GC.Collect();
         }
+
+        /// <summary>
+        /// Takes the user to the excel file that was created for crate info.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExportFile_Click(object sender, EventArgs e)
         {
-            //crate info 
+            //Go to excel file
+            string filepath = "simulationresults.csv";
+            System.Diagnostics.Process.Start(filepath);
 
-            //Time increment that each crate was unloaded
-            //The truck drivers name
-            //The delivery company's name
-            //The crate ID number
-            //The crates value
-            //A string indicated the one of three scenarios.
-
-
-
-/*            FileStream fs = new FileStream("simulationresults.csv", FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);*/
         }
 
         /// <summary>
-        /// clears the data table and restores the headder 
+        /// clears the data table and restores the header.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -123,14 +156,7 @@ namespace WindowsFormsApp1
             dataTable.Clear();
             dataGridView1.Refresh();
         }
-		
-        public static void RecordCrate(Crate crate, Truck truck, String crateStatus)
-        {
-/*
-            FileStream fs = new FileStream("simulationresults.csv", FileMode.Create);
-            StreamWriter sw = new StreamWriter(fs);*/
 
-        }
         private void Form2_Load(object sender, EventArgs e)
         {
 

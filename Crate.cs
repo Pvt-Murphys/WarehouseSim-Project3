@@ -3,7 +3,7 @@
 // Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
 // Course: CSCI-2210-001 - Data Structures
 // Assignment: Project 3
-// Description:  
+// Description: Used to define the different aspects of the Crate that is used in the trucks during the simulation.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -20,9 +20,9 @@ namespace Project3
     /// </summary>
     public class Crate
     {
-        string Id; //The crates unique identification number
-        double Price; //The cost of the crates contents
-        private int timeInterval { get; set; }
+        public string Id; //The crates unique identification number
+        public double Price; //The cost of the crates contents
+        public int timeInterval { get; set; }
 
         public Crate()
         {

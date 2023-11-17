@@ -3,7 +3,7 @@
 // Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
 // Course: CSCI-2210-001 - Data Structures
 // Assignment: Project 3
-// Description:  
+// Description: Defines the truck and the different actions it needs to do in the simulation.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -72,7 +72,7 @@ namespace Project3
         /// ToString override for use in debugging.
         /// </summary>
         /// <returns>String representation of the Truck object.</returns>
-        public string ToString()
+        public override string ToString()
         {
             return $"{this.Driver}, {this.DeliveryCompany}, {this.Trailer.Count()} crates";
         }
