@@ -54,6 +54,7 @@ namespace WindowsFormsApp1
         }
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
+            
             dataGridView1.Refresh();
         }
         private bool IsAnInteger(string value)
@@ -99,42 +100,14 @@ namespace WindowsFormsApp1
             dataTable.Clear();
             dataGridView1.Refresh();
         }
-        
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            this.AcceptButton = EnterNumber;
-            textBox1.Text = "Enter Dock Amount";
-            textBox1.ForeColor = Color.Gray;
-        }
-        private void textBox1_Enter(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "Enter Dock Amount")
-            {
-                textBox1.Text = "";
-                textBox1.ForeColor = Color.Gainsboro;
-            }
-        }
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-            if (textBox1.Text == "")
-            {
-                textBox1.Text = "Enter Dock Amount";
-                textBox1.ForeColor = Color.Gray;
-            }
-        }
-        private void EnterNumber_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.KeyCode == Keys.Enter)
-            {
-                EnterNumber.PerformClick();
-                e.Handled = true;
-            }
-        }
         public static void RecordCrate(Crate crate, Truck truck, String crateStatus)
         {
 
         }
-        
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
