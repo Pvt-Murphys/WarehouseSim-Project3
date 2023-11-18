@@ -33,7 +33,6 @@
             this.MenuPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.EnterNumber = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.ExportFile = new System.Windows.Forms.Button();
             this.ClearTable = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.MenuPanel.SuspendLayout();
@@ -55,7 +54,6 @@
             this.MenuPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.MenuPanel.Controls.Add(this.EnterNumber);
             this.MenuPanel.Controls.Add(this.textBox1);
-            this.MenuPanel.Controls.Add(this.ExportFile);
             this.MenuPanel.Controls.Add(this.ClearTable);
             this.MenuPanel.Location = new System.Drawing.Point(0, 0);
             this.MenuPanel.Name = "MenuPanel";
@@ -64,6 +62,7 @@
             // 
             // EnterNumber
             // 
+            this.EnterNumber.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(54)))));
             this.EnterNumber.Dock = System.Windows.Forms.DockStyle.Top;
             this.EnterNumber.FlatAppearance.BorderSize = 0;
             this.EnterNumber.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -74,7 +73,7 @@
             this.EnterNumber.Size = new System.Drawing.Size(143, 40);
             this.EnterNumber.TabIndex = 2;
             this.EnterNumber.Text = "Run Simulation";
-            this.EnterNumber.UseVisualStyleBackColor = true;
+            this.EnterNumber.UseVisualStyleBackColor = false;
             this.EnterNumber.Click += new System.EventHandler(this.EnterNumber_Click);
             this.EnterNumber.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterNumber_KeyDown);
             // 
@@ -93,34 +92,20 @@
             this.textBox1.Enter += new System.EventHandler(this.textBox1_Enter);
             this.textBox1.Leave += new System.EventHandler(this.textBox1_Leave);
             // 
-            // ExportFile
-            // 
-            this.ExportFile.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ExportFile.FlatAppearance.BorderSize = 0;
-            this.ExportFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExportFile.ForeColor = System.Drawing.Color.Gainsboro;
-            this.ExportFile.Location = new System.Drawing.Point(0, 60);
-            this.ExportFile.Margin = new System.Windows.Forms.Padding(0);
-            this.ExportFile.Name = "ExportFile";
-            this.ExportFile.Size = new System.Drawing.Size(143, 40);
-            this.ExportFile.TabIndex = 4;
-            this.ExportFile.Text = "Export file\r\n";
-            this.ExportFile.UseVisualStyleBackColor = true;
-            this.ExportFile.Click += new System.EventHandler(this.ExportFile_Click);
-            // 
             // ClearTable
             // 
+            this.ClearTable.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(54)))));
             this.ClearTable.Dock = System.Windows.Forms.DockStyle.Top;
             this.ClearTable.FlatAppearance.BorderSize = 0;
             this.ClearTable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClearTable.ForeColor = System.Drawing.Color.Gainsboro;
-            this.ClearTable.Location = new System.Drawing.Point(0, 100);
+            this.ClearTable.Location = new System.Drawing.Point(0, 60);
             this.ClearTable.Margin = new System.Windows.Forms.Padding(0);
             this.ClearTable.Name = "ClearTable";
             this.ClearTable.Size = new System.Drawing.Size(143, 40);
             this.ClearTable.TabIndex = 5;
             this.ClearTable.Text = "Clear Table";
-            this.ClearTable.UseVisualStyleBackColor = true;
+            this.ClearTable.UseVisualStyleBackColor = false;
             this.ClearTable.Click += new System.EventHandler(this.ClearTable_Click);
             // 
             // Form2
@@ -147,7 +132,6 @@
         private System.Windows.Forms.FlowLayoutPanel MenuPanel;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button EnterNumber;
-        private System.Windows.Forms.Button ExportFile;
         private System.Windows.Forms.Button ClearTable;
     }
 }
