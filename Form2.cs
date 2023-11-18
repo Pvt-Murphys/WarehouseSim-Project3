@@ -1,4 +1,12 @@
-﻿using Newtonsoft.Json.Linq;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+// Author: Riley Owen, owenrm1@etsu.edu, Josh , Daniel
+// Course: CSCI-2210-001 - Data Structures
+// Assignment: Project 3
+// Description: 
+//
+///////////////////////////////////////////////////////////////////////////////
+using Newtonsoft.Json.Linq;
 using Project3;
 using System;
 using System.Collections.Generic;
@@ -15,12 +23,17 @@ namespace WindowsFormsApp1
     public partial class Form2 : Form
     {
         private DataTable dataTable;
+        /// <summary>
+        /// Initializes the form
+        /// </summary>
         public Form2()
         {
             InitializeComponent();
             InitializeDataTable();
         }
-
+        /// <summary>
+        /// Initalizes the Data tabel with the headers added via datatabe.columns.add
+        /// </summary>
         private void InitializeDataTable()
         {
             // create data table columns
@@ -36,6 +49,16 @@ namespace WindowsFormsApp1
             // bind data table to grid view
             dataGridView1.DataSource = dataTable;
         }
+        /// <summary>
+        /// adds a row to the data table with the values passed in
+        /// </summary>
+        /// <param name="totalCrates"></param>
+        /// <param name="totalValue"></param>
+        /// <param name="totalCost"></param>
+        /// <param name="totalRevenue"></param>
+        /// <param name="averageCrateValue"></param>
+        /// <param name="averageTruckValue"></param>
+        /// <param name="longestLine"></param>
         public void AddDataRow(string totalCrates, string totalValue, string totalCost, string totalRevenue, string averageCrateValue, string averageTruckValue, string longestLine)
         {
             // Add a new row to the DataTable
@@ -52,15 +75,30 @@ namespace WindowsFormsApp1
             dataTable.Rows.Add(row);
             dataGridView1.Refresh();
         }
+        /// <summary>
+        /// refreshes the data table
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             dataGridView1.Refresh();
         }
+        /// <summary>
+        /// checks if the string passed in is an integer
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         private bool IsAnInteger(string value)
         {
             int number;
             return int.TryParse(value, out number);
         }
+        /// <summary>
+        /// allows user to enter a number number of docks and runs the simulation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnterNumber_Click(object sender, EventArgs e)
         {
             string userInput = textBox1.Text;
@@ -85,10 +123,6 @@ namespace WindowsFormsApp1
             }
             System.GC.Collect();
         }
-        private void ExportFile_Click(object sender, EventArgs e)
-        {
-
-        }
         /// <summary>
         /// clears the data table and restores the headder 
         /// </summary>
@@ -99,13 +133,22 @@ namespace WindowsFormsApp1
             dataTable.Clear();
             dataGridView1.Refresh();
         }
-        
+        /// <summary>
+        /// loads the form and sets the enter button to the enter number button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Form2_Load(object sender, EventArgs e)
         {
             this.AcceptButton = EnterNumber;
             textBox1.Text = "Enter Dock Amount";
             textBox1.ForeColor = Color.Gray;
         }
+        /// <summary>
+        /// removes the default text in the text box when the user clicks on it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox1_Enter(object sender, EventArgs e)
         {
             if (textBox1.Text == "Enter Dock Amount")
@@ -114,6 +157,11 @@ namespace WindowsFormsApp1
                 textBox1.ForeColor = Color.Gainsboro;
             }
         }
+        /// <summary>
+        /// places the default text back in the text box 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void textBox1_Leave(object sender, EventArgs e)
         {
             if (textBox1.Text == "")
@@ -122,6 +170,11 @@ namespace WindowsFormsApp1
                 textBox1.ForeColor = Color.Gray;
             }
         }
+        /// <summary>
+        /// lets user hit the enter key to the run simulation button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EnterNumber_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.KeyCode == Keys.Enter)

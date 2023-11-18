@@ -1,6 +1,6 @@
 ﻿///////////////////////////////////////////////////////////////////////////////
 //
-// Author: Riley Owen, owenrm1@etsu.edu, Josh 
+// Author: Riley Owen, owenrm1@etsu.edu, Josh , Daniel
 // Course: CSCI-2210-001 - Data Structures
 // Assignment: Project 3
 // Description: 
@@ -53,7 +53,7 @@ namespace Project3
             }
         }
 
-        /// <summary>
+        /// <summary>`
         ///  Output a report to the user with the results of the simulation in a text file.
         /// </summary>
         /// <param name="args"></param>

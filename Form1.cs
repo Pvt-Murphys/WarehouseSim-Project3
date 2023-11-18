@@ -1,4 +1,12 @@
-﻿using System;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+// Author: Riley Owen, owenrm1@etsu.edu, Josh , Daniel
+// Course: CSCI-2210-001 - Data Structures
+// Assignment: Project 3
+// Description: 
+//
+///////////////////////////////////////////////////////////////////////////////
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
