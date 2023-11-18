@@ -17,7 +17,17 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadinganimationgif_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void GoToSimulation_Click(object sender, EventArgs e)
         {
             var frm = new Form2();
             frm.Location = this.Location;
@@ -25,11 +35,6 @@ namespace WindowsFormsApp1
             frm.FormClosing += delegate { this.Show(); };
             frm.Show();
             this.Hide();
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
