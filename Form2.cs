@@ -25,6 +25,8 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
+        public int filepathnumber = 0;
+
         private DataTable dataTable;
 
         /// <summary>
@@ -140,10 +142,7 @@ namespace WindowsFormsApp1
         /// <param name="e"></param>
         private void ExportFile_Click(object sender, EventArgs e)
         {
-            //Go to excel file
-            string filepath = "simulationresults.csv";
-            System.Diagnostics.Process.Start(filepath);
-
+             
         }
 
         /// <summary>

@@ -21,7 +21,9 @@ namespace Project3
     public class Warehouse
     {
 
-        public string filePath = "simulationresults.csv";
+
+        public static int simcount = 0;
+
         //basic statistics for use in report
         public string finalData = string.Empty;
         public int docksOpen = 20;
@@ -75,8 +77,10 @@ namespace Project3
             //}
 
             //BEGIN SIMULATION
+            simcount++;
             for (int i = 0; i < 48; i++)
             {
+
                 //trucks bound for that interval arrive at gate
                 //while (schedule.Peek().GetArrivalInterval() == i)
                 //{
@@ -236,15 +240,12 @@ namespace Project3
         /// <param name="crateStatus"></param>
         public static void RecordCrate(Crate crate, Truck truck, string crateStatus)
         {
-
-            string filePath = "simulationresults.csv";
+            string filePath = $"simulationresults_{simcount}.csv";
 
             // Use using statement to ensure the FileStream and StreamWriter are properly closed and disposed
             using (FileStream fs = new FileStream(filePath, FileMode.Append, FileAccess.Write))
             using (StreamWriter sw = new StreamWriter(fs))
             {
-                //Check to see if a past simulation has been ran, if so replace last file with new file
-
                 // Check if the CSV file is empty, if so add the header
                 if (fs.Length == 0)
                 {
