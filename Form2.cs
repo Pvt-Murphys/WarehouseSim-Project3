@@ -1,3 +1,4 @@
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
@@ -30,7 +31,7 @@ namespace WindowsFormsApp1
         private DataTable dataTable;
 
         /// <summary>
-        /// 
+        /// Initializes the form
         /// </summary>
         public Form2()
         {
@@ -39,7 +40,7 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// 
+        /// Initalizes the Data tabel with the headers added via datatabe.columns.add
         /// </summary>
         private void InitializeDataTable()
         {
@@ -58,7 +59,7 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// 
+        /// adds a row to the data table with the values passed in
         /// </summary>
         /// <param name="totalCrates"></param>
         /// <param name="totalValue"></param>
@@ -85,7 +86,7 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// 
+        /// refreshes the data table
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,9 +94,8 @@ namespace WindowsFormsApp1
         {
             dataGridView1.Refresh();
         }
-
         /// <summary>
-        /// 
+        /// checks if the string passed in is an integer
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -106,7 +106,7 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// 
+        /// allows user to enter a number number of docks and runs the simulation
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -136,16 +136,6 @@ namespace WindowsFormsApp1
         }
 
         /// <summary>
-        /// Takes the user to the excel file that was created for crate info.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ExportFile_Click(object sender, EventArgs e)
-        {
-             
-        }
-
-        /// <summary>
         /// clears the data table and restores the header.
         /// </summary>
         /// <param name="sender"></param>
@@ -156,10 +146,67 @@ namespace WindowsFormsApp1
             dataGridView1.Refresh();
         }
 
+
         private void Form2_Load(object sender, EventArgs e)
         {
 
         }
+
+        /// <summary>
+        /// loads the form and sets the enter button to the enter number button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Form2_Load(object sender, EventArgs e)
+        {
+            this.AcceptButton = EnterNumber;
+            textBox1.Text = "Enter Dock Amount";
+            textBox1.ForeColor = Color.Gray;
+        }
+        /// <summary>
+        /// removes the default text in the text box when the user clicks on it
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBox1_Enter(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "Enter Dock Amount")
+            {
+                textBox1.Text = "";
+                textBox1.ForeColor = Color.Gainsboro;
+            }
+        }
+        /// <summary>
+        /// places the default text back in the text box 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "")
+            {
+                textBox1.Text = "Enter Dock Amount";
+                textBox1.ForeColor = Color.Gray;
+            }
+        }
+        /// <summary>
+        /// lets user hit the enter key to the run simulation button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EnterNumber_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                EnterNumber.PerformClick();
+                e.Handled = true;
+            }
+        }
+        public static void RecordCrate(Crate crate, Truck truck, String crateStatus)
+        {
+
+        }
+        
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 

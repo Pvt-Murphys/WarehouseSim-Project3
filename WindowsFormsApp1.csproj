@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crate.cs" />
+    <Compile Include="CustomButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Dock.cs" />
     <Compile Include="Excel\Application.cs" />
     <Compile Include="Warehouse.cs" />

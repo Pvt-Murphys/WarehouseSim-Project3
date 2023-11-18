@@ -16,7 +16,7 @@ using Newtonsoft.Json;
 namespace Project3
 {
     /// <summary>
-    /// RandomName class, used to generate a random name. Credit to https://github.com/duncanrhamill/RandomNameGen for the class.
+    /// RandomName class, used to generate a random name. Credit to https://github.com/duncanrhamill/RandomNameGen for the class, I did not write any of this code.
     /// </summary>
     public class RandomName
     {
@@ -146,3 +146,4 @@ namespace Project3
         Female
     }
 }
+

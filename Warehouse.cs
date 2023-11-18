@@ -48,18 +48,21 @@ namespace Project3
 
         Random rand = new Random();
 
-
-        public Warehouse(int docknum)
+        /// <summary>
+        /// Creates a new Warehouse object with a number of dock objects equal to dockNum
+        /// </summary>
+        /// <param name="dockNum">Number of docks for the Warehouse to have.</param>
+        public Warehouse(int dockNum)
         {
-            docks = new Dock[docknum];
-            for (int d = 0; d < docknum; d++)
+            docks = new Dock[dockNum];
+            for (int d = 0; d < dockNum; d++)
             {
                 docks[d] = new Dock(nextDockID.ToString());
                 nextDockID++;
             }
         }
 
-        /// <summary>
+        /// <summary>`
         ///  Output a report to the user with the results of the simulation in a text file.
         /// </summary>
         /// <param name="args"></param>
@@ -89,7 +92,7 @@ namespace Project3
                 Random rand = new Random();
                 if (i < 12)
                 {
-                    for (int j = 0; j < 1; j++)
+                    for (int j = 0; j < 2; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -107,16 +110,16 @@ namespace Project3
                     }
                 } else if (i >= 18 && i < 30)
                 {
-                    for (int j = 0; j < 3; j++)
+                    for (int j = 0; j < 4; j++)
                     {
-                        if (rand.Next(1, 3) == 1)
+                        if (rand.Next(1, 2) == 1)
                         {
                             entrance.Enqueue(new Truck());
                         }
                     }
                 } else if (i >= 30 && i < 36)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < 3; j++)
                     {
                         if (rand.Next(1, 3) == 1)
                         {
@@ -125,7 +128,7 @@ namespace Project3
                     }
                 } else if (i >= 36)
                 {
-                    for (int j = 0; j < 1; j++)
+                    for (int j = 0; j < 2; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -161,6 +164,9 @@ namespace Project3
                     }
                 }
 
+                totalTrucks = 0;
+                totalCrates = 0;
+                totalValue = 0;
                 //each dock unloads 1 crate, swapping out trucks if truck is empty
                 foreach (Dock d in docks)
                 {
@@ -201,6 +207,7 @@ namespace Project3
 
                     }
 
+
                 }
 
                 //updates totals each time interval
@@ -211,14 +218,19 @@ namespace Project3
                 //loops through docks to add their totals to the relevant totals
                 foreach (Dock d in docks)
                 {
+
+                    //adds up the total values as the simulation runs, for dynamic display.
+
                     totalTrucks += d.TotalTrucks;
                     totalCrates += d.TotalCrates;
                     totalValue += d.TotalSales;
                 }
+                //calculates other statistics for display in program.
                 totalCost = totalCost + docksOpen * 100;
                 averageCrateVal = totalValue / totalCrates;
                 averageTruckVal = totalValue / totalTrucks;
                 totalRevenue = totalValue - totalCost;
+
 
                 form.AddDataRow(totalCrates.ToString(), totalValue.ToString(), totalCost.ToString(), totalRevenue.ToString(), averageCrateVal.ToString(), averageTruckVal.ToString(), longestLine.ToString());
             }
