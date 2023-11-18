@@ -1,9 +1,9 @@
 ﻿///////////////////////////////////////////////////////////////////////////////
 //
-// Author: Riley Owen, owenrm1@etsu.edu, Josh , Daniel
+// Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
 // Course: CSCI-2210-001 - Data Structures
 // Assignment: Project 3
-// Description: 
+// Description: Creates a form for the user to navigate to the simulation.
 //
 ///////////////////////////////////////////////////////////////////////////////
 using System;

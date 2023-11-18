@@ -1,11 +1,14 @@
-﻿///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
 //
-// Author: Riley Owen, owenrm1@etsu.edu, Josh , Daniel
+// Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
 // Course: CSCI-2210-001 - Data Structures
 // Assignment: Project 3
-// Description: 
+// Description: Displays simulation data to the user in a table, and allows the user to run the simulation again and also export 
+// to a csv file.
 //
 ///////////////////////////////////////////////////////////////////////////////
+
 using Newtonsoft.Json.Linq;
 using Project3;
 using System;
@@ -13,6 +16,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +26,10 @@ namespace WindowsFormsApp1
 {
     public partial class Form2 : Form
     {
+        public int filepathnumber = 0;
+
         private DataTable dataTable;
+
         /// <summary>
         /// Initializes the form
         /// </summary>
@@ -31,6 +38,7 @@ namespace WindowsFormsApp1
             InitializeComponent();
             InitializeDataTable();
         }
+
         /// <summary>
         /// Initalizes the Data tabel with the headers added via datatabe.columns.add
         /// </summary>
@@ -49,6 +57,7 @@ namespace WindowsFormsApp1
             // bind data table to grid view
             dataGridView1.DataSource = dataTable;
         }
+
         /// <summary>
         /// adds a row to the data table with the values passed in
         /// </summary>
@@ -75,6 +84,7 @@ namespace WindowsFormsApp1
             dataTable.Rows.Add(row);
             dataGridView1.Refresh();
         }
+
         /// <summary>
         /// refreshes the data table
         /// </summary>
@@ -94,6 +104,7 @@ namespace WindowsFormsApp1
             int number;
             return int.TryParse(value, out number);
         }
+
         /// <summary>
         /// allows user to enter a number number of docks and runs the simulation
         /// </summary>
@@ -123,8 +134,9 @@ namespace WindowsFormsApp1
             }
             System.GC.Collect();
         }
+
         /// <summary>
-        /// clears the data table and restores the headder 
+        /// clears the data table and restores the header.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -133,6 +145,13 @@ namespace WindowsFormsApp1
             dataTable.Clear();
             dataGridView1.Refresh();
         }
+
+
+        private void Form2_Load(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// loads the form and sets the enter button to the enter number button
         /// </summary>

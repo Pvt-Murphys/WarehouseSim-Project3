@@ -1,4 +1,13 @@
-﻿using System;
+﻿///////////////////////////////////////////////////////////////////////////////
+//
+// Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
+// Course: CSCI-2210-001 - Data Structures
+// Assignment: Project 3
+// Description: This code is the main entry point for the application.
+//
+///////////////////////////////////////////////////////////////////////////////
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,9 +1,9 @@
 ﻿///////////////////////////////////////////////////////////////////////////////
 //
-// Author: Riley Owen, owenrm1@etsu.edu, Josh , Daniel
+// Author: Riley O, owenrm1@etsu.edu, Josh, xxxx@xxx.xxx, Daniel L, lynchda@etsu.edu
 // Course: CSCI-2210-001 - Data Structures
 // Assignment: Project 3
-// Description: 
+// Description: Runs the simulation code and formats the results to be able to be outputed.
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -13,11 +13,17 @@ using System;
 using Microsoft.SqlServer.Server;
 using System.Security.Cryptography.X509Certificates;
 using WindowsFormsApp1;
+using System.IO;
+using System.Windows.Forms;
 
 namespace Project3
 {
     public class Warehouse
     {
+
+
+        public static int simcount = 0;
+
         //basic statistics for use in report
         public string finalData = string.Empty;
         public int docksOpen = 20;
@@ -74,8 +80,10 @@ namespace Project3
             //}
 
             //BEGIN SIMULATION
+            simcount++;
             for (int i = 0; i < 48; i++)
             {
+
                 //trucks bound for that interval arrive at gate
                 //while (schedule.Peek().GetArrivalInterval() == i)
                 //{
@@ -163,40 +171,56 @@ namespace Project3
                 foreach (Dock d in docks)
                 {
                     //prepares to write an entry into the report CSV file containing information about the crate, truck, and circumstances.
+
                     crateStatus = string.Empty;
                     if (d.Line.Count() > 0 && d.Line.Peek().Trailer.Count() > 0)
                     {
+
                         if (d.Line.Peek().Trailer.Count() > 1)
                         {
                             crateStatus = "The truck still has more crates to unload.";
                             //Unloads the crate at the same time as it writes to the report.
-                            Form2.RecordCrate(d.UnloadCrate(i), d.Line.Peek(), crateStatus);
+                            RecordCrate(d.UnloadCrate(i), d.Line.Peek(), crateStatus);
                         }
 
                         if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() > 1)
                         {
                             crateStatus = "The truck has no more crates to unload, and another truck is waiting to take its place.";
                             //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
-                            Form2.RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                            RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
                         }
 
                         if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() == 1)
                         {
                             crateStatus = "The truck has no more crates to unload, and no other trucks are in the line.";
                             //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
-                            Form2.RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                            RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
                         }
+
+
                         //This is an example code of the method to write the crate to the csv file, note that the two method calls MUST occur, as otherwise the crate will not be unloaded nor the truck sent off it is empty.
                         //RecordCrate(d.UnloadCrate(i), d.Sendoff/d.Line().Peek(), crateStatus);
                         if (d.Line.Count() == 0)
                         {
                             d.TimeNotInUse++;
-                            
                         }
+
                     }
 
 
+                }
+
+                //updates totals each time interval
+                //resets totals stored in dock objects to prevent exponential growth
+                totalTrucks = 0;
+                totalCrates = 0;
+                totalValue = 0;
+                //loops through docks to add their totals to the relevant totals
+                foreach (Dock d in docks)
+                {
+
                     //adds up the total values as the simulation runs, for dynamic display.
+
                     totalTrucks += d.TotalTrucks;
                     totalCrates += d.TotalCrates;
                     totalValue += d.TotalSales;
@@ -209,14 +233,42 @@ namespace Project3
 
 
                 form.AddDataRow(totalCrates.ToString(), totalValue.ToString(), totalCost.ToString(), totalRevenue.ToString(), averageCrateVal.ToString(), averageTruckVal.ToString(), longestLine.ToString());
-
             }
 
 
 
+            // end scenario statistics such as computed averages, as well a console line to display them
+
             // adds a new data row to the data table
             form.AddDataRow(totalCrates.ToString(), totalValue.ToString(), totalCost.ToString(), totalRevenue.ToString(), averageCrateVal.ToString(), averageTruckVal.ToString(), longestLine.ToString());
             return finalData = ($"{totalTrucks} trucks, {totalCrates} crates. {totalValue} earned from crates, {totalCost} in operating costs, {totalRevenue} overall revenue. {averageCrateVal} is average value per crate.");
+        }
+
+        /// <summary>
+        /// Used in the simulation to display crate information to a csv file.
+        /// </summary>
+        /// <param name="crate"></param>
+        /// <param name="truck"></param>
+        /// <param name="crateStatus"></param>
+        public static void RecordCrate(Crate crate, Truck truck, string crateStatus)
+        {
+            string filePath = $"simulationresults_{simcount}.csv";
+
+            // Use using statement to ensure the FileStream and StreamWriter are properly closed and disposed
+            using (FileStream fs = new FileStream(filePath, FileMode.Append, FileAccess.Write))
+            using (StreamWriter sw = new StreamWriter(fs))
+            {
+                // Check if the CSV file is empty, if so add the header
+                if (fs.Length == 0)
+                {
+                    string header = "Time Increment,Truck Driver Name,Delivery Company Name,Crate ID,Crate Value,Scenario";
+                    sw.WriteLine(header);
+                }
+
+                    // Append data to the CSV file
+                    string data = $"{crate.timeInterval},{truck.Driver},{truck.DeliveryCompany},{crate.Id},{crate.Price},{crateStatus}";
+                    sw.WriteLine(data);
+            }
         }
 
         /// <summary>
