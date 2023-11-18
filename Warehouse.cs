@@ -188,25 +188,25 @@ namespace Project3
                             
                         }
                     }
+
+                    //adds up the total values as the simulation runs, for dynamic display.
+                    totalTrucks += d.TotalTrucks;
+                    totalCrates += d.TotalCrates;
+                    totalValue += d.TotalSales;
                 }
+                //calculates other statistics for display in program.
                 totalCost = totalCost + docksOpen * 100;
+                averageCrateVal = totalValue / totalCrates;
+                averageTruckVal = totalValue / totalTrucks;
+                totalRevenue = totalValue - totalCost;
+
 
                 form.AddDataRow(totalCrates.ToString(), totalValue.ToString(), totalCost.ToString(), totalRevenue.ToString(), averageCrateVal.ToString(), averageTruckVal.ToString(), longestLine.ToString());
 
             }
 
-            //at the end of the sim, adds up each dock object's recorded statistics into the final numbers
-            foreach (Dock d in docks)
-            {
-                totalTrucks += d.TotalTrucks;
-                totalCrates += d.TotalCrates;
-                totalValue += d.TotalSales;
-            }
 
-            // end scenario statistics such as computed averages, as well a console line to display them
-            averageCrateVal = totalValue / totalCrates;
-            averageTruckVal = totalValue / totalTrucks;
-            totalRevenue = totalValue - totalCost;
+
             // adds a new data row to the data table
             form.AddDataRow(totalCrates.ToString(), totalValue.ToString(), totalCost.ToString(), totalRevenue.ToString(), averageCrateVal.ToString(), averageTruckVal.ToString(), longestLine.ToString());
             return finalData = ($"{totalTrucks} trucks, {totalCrates} crates. {totalValue} earned from crates, {totalCost} in operating costs, {totalRevenue} overall revenue. {averageCrateVal} is average value per crate.");
