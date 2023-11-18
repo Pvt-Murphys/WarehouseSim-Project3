@@ -196,10 +196,6 @@ namespace WindowsFormsApp1
                 e.Handled = true;
             }
         }
-        public static void RecordCrate(Crate crate, Truck truck, String crateStatus)
-        {
-
-        }
         
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
