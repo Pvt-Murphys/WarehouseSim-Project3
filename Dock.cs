@@ -25,6 +25,10 @@ namespace Project3
         public int TimeInUse { get; set; }
         public int TimeNotInUse { get; set; }
 
+        /// <summary>
+        /// Constructs a new Dock object with a specific ID.
+        /// </summary>
+        /// <param name="id"></param>
         public Dock(string id)
         {
             Id = id;

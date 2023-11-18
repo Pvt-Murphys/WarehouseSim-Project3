@@ -24,6 +24,10 @@ namespace Project3
         double Price; //The cost of the crates contents
         private int timeInterval { get; set; }
 
+
+        /// <summary>
+        /// Creates a Crate object with random entries for the price field and a unique ID.
+        /// </summary>
         public Crate()
         {
             //Generate a random price from 50$ to 500$

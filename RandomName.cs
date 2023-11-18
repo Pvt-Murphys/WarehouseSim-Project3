@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 namespace Project3
 {
     /// <summary>
-    /// RandomName class, used to generate a random name. Credit to https://github.com/duncanrhamill/RandomNameGen for the class.
+    /// RandomName class, used to generate a random name. Credit to https://github.com/duncanrhamill/RandomNameGen for the class, I did not write any of this code.
     /// </summary>
     public class RandomName
     {
@@ -138,5 +138,3 @@ namespace Project3
     }
 }
 
-
-//C:\Users\rmowe\OneDrive\Desktop\School 2023\Data Structures\Project3_FINAL\WindowsFormsApp1\json1.json

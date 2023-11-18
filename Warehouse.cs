@@ -42,11 +42,14 @@ namespace Project3
 
         Random rand = new Random();
 
-
-        public Warehouse(int docknum)
+        /// <summary>
+        /// Creates a new Warehouse object with a number of dock objects equal to dockNum
+        /// </summary>
+        /// <param name="dockNum">Number of docks for the Warehouse to have.</param>
+        public Warehouse(int dockNum)
         {
-            docks = new Dock[docknum];
-            for (int d = 0; d < docknum; d++)
+            docks = new Dock[dockNum];
+            for (int d = 0; d < dockNum; d++)
             {
                 docks[d] = new Dock(nextDockID.ToString());
                 nextDockID++;
