@@ -84,7 +84,7 @@ namespace Project3
                 Random rand = new Random();
                 if (i < 12)
                 {
-                    for (int j = 0; j < 1; j++)
+                    for (int j = 0; j < 2; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -102,16 +102,16 @@ namespace Project3
                     }
                 } else if (i >= 18 && i < 30)
                 {
-                    for (int j = 0; j < 3; j++)
+                    for (int j = 0; j < 4; j++)
                     {
-                        if (rand.Next(1, 3) == 1)
+                        if (rand.Next(1, 2) == 1)
                         {
                             entrance.Enqueue(new Truck());
                         }
                     }
                 } else if (i >= 30 && i < 36)
                 {
-                    for (int j = 0; j < 2; j++)
+                    for (int j = 0; j < 3; j++)
                     {
                         if (rand.Next(1, 3) == 1)
                         {
@@ -120,7 +120,7 @@ namespace Project3
                     }
                 } else if (i >= 36)
                 {
-                    for (int j = 0; j < 1; j++)
+                    for (int j = 0; j < 2; j++)
                     {
                         if (rand.Next(1, 2) == 1)
                         {
@@ -156,6 +156,9 @@ namespace Project3
                     }
                 }
 
+                totalTrucks = 0;
+                totalCrates = 0;
+                totalValue = 0;
                 //each dock unloads 1 crate, swapping out trucks if truck is empty
                 foreach (Dock d in docks)
                 {
@@ -191,6 +194,7 @@ namespace Project3
                             
                         }
                     }
+
 
                     //adds up the total values as the simulation runs, for dynamic display.
                     totalTrucks += d.TotalTrucks;
