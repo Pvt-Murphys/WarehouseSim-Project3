@@ -1,0 +1,1 @@
+Based on the new simulation data, I formally recommend that the new warehouse installation have 25 docks. Several configurations were tested, and based on extrapolated data of the mean revenue of each configuration, 25 docks is the number of docks that would provide best cost to value ratio for the new warehouse.

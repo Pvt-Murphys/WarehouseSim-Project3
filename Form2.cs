@@ -146,12 +146,6 @@ namespace WindowsFormsApp1
             dataGridView1.Refresh();
         }
 
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// loads the form and sets the enter button to the enter number button
         /// </summary>
