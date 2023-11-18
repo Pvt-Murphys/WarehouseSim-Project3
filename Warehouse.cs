@@ -21,8 +21,10 @@ namespace Project3
     public class Warehouse
     {
 
+        //filepath info for keeping count of simulations
+        string countPath = Path.GetFullPath("Coconut.txt");
+        private int simCount;
 
-        public static int simcount = 0;
 
         //basic statistics for use in report
         public string finalData = string.Empty;
@@ -60,6 +62,7 @@ namespace Project3
                 docks[d] = new Dock(nextDockID.ToString());
                 nextDockID++;
             }
+            simCount = 1;
         }
 
         /// <summary>`
@@ -68,19 +71,40 @@ namespace Project3
         /// <param name="args"></param>
         public string Run(Form2 form)
         {
+            //This section attempts to read the number of simulations that have been run in total across program executions to create unique .csv files for each simulation run.
+            try
+            {
+                using (StreamReader readCount = new StreamReader(countPath))
+                {
+                    simCount = Convert.ToInt32(readCount.ReadLine());
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Simulation count file could not be read.");
+                Console.WriteLine(e.Message);
+            }
+
+            try
+            {
+                using (StreamWriter writeCount = new StreamWriter(countPath))
+                {
+                    writeCount.WriteLine(simCount + 1);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Could not write simulation count to file.");
+                Console.WriteLine(e.Message);
+            }
             
-            //Incoming truck list and arrival intervals
-            //Queue<Schedule> schedule = new Queue<Schedule>(incomingTruckArrivals());
+
+            //creates new queue of trucks to arrive at the gate.
             entrance = new Queue<Truck>();
 
-            //test code to ensure that schedule's arrival intervals are in order
-            //while (schedule.Count() > 0)
-            //{
-            //    Console.WriteLine(schedule.Dequeue().GetArrivalInterval().ToString());
-            //}
 
             //BEGIN SIMULATION
-            simcount++;
             for (int i = 0; i < 48; i++)
             {
 
@@ -180,21 +204,21 @@ namespace Project3
                         {
                             crateStatus = "The truck still has more crates to unload.";
                             //Unloads the crate at the same time as it writes to the report.
-                            RecordCrate(d.UnloadCrate(i), d.Line.Peek(), crateStatus);
+                            RecordCrate(d.UnloadCrate(i), d.Line.Peek(), crateStatus, simCount);
                         }
 
                         if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() > 1)
                         {
                             crateStatus = "The truck has no more crates to unload, and another truck is waiting to take its place.";
                             //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
-                            RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                            RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus, simCount);
                         }
 
                         if (d.Line.Peek().Trailer.Count() == 1 && d.Line.Count() == 1)
                         {
                             crateStatus = "The truck has no more crates to unload, and no other trucks are in the line.";
                             //Unloads the crate at the same time as it writes to the report, also sends off the empty truck.
-                            RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus);
+                            RecordCrate(d.UnloadCrate(i), d.SendOff(), crateStatus, simCount);
                         }
 
 
@@ -250,9 +274,9 @@ namespace Project3
         /// <param name="crate"></param>
         /// <param name="truck"></param>
         /// <param name="crateStatus"></param>
-        public static void RecordCrate(Crate crate, Truck truck, string crateStatus)
+        public static void RecordCrate(Crate crate, Truck truck, string crateStatus, int simCount)
         {
-            string filePath = $"simulationresults_{simcount}.csv";
+            string filePath = $"simulationresults_{simCount}.csv";
 
             // Use using statement to ensure the FileStream and StreamWriter are properly closed and disposed
             using (FileStream fs = new FileStream(filePath, FileMode.Append, FileAccess.Write))
@@ -271,24 +295,5 @@ namespace Project3
             }
         }
 
-        /// <summary>
-        /// Creates a list of random intervals within the simulation parameters that correspond to a Truck object.
-        /// </summary>
-        /// <returns>List of Schedule objects containing a truck object and the interval it will arrive at.</returns>
-        public List<Schedule> incomingTruckArrivals()
-        {
-            List<Schedule> arrivalIntervals = new List<Schedule>();
-            Random rand = new Random();
-            int totalTime = 0;
-            int when;
-            while (totalTime < 480)
-            {
-                when = rand.Next(5, 10);
-                totalTime += when;
-                Schedule entry = new Schedule(new Truck(), totalTime / 10);
-                arrivalIntervals.Add(entry);
-            }
-            return arrivalIntervals;
-        }
     }
 }
